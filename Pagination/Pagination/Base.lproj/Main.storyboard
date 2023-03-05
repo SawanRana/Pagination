@@ -15,10 +15,53 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fmT-8s-l9B">
+                                <rect key="frame" x="0.0" y="88" width="414" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VSD-qv-aDw">
+                                <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JTa-QH-Ctr">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You tapped on row" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsL-7m-2Fq">
+                                                <rect key="frame" x="10" y="10" width="180" height="180"/>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="32"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.92156862745098034" green="0.81960784313725488" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="gsL-7m-2Fq" firstAttribute="top" secondItem="JTa-QH-Ctr" secondAttribute="top" constant="10" id="CtL-pl-KKc"/>
+                                            <constraint firstAttribute="bottom" secondItem="gsL-7m-2Fq" secondAttribute="bottom" constant="10" id="cbW-6o-Yqf"/>
+                                            <constraint firstAttribute="width" constant="200" id="eXT-Aw-r4V"/>
+                                            <constraint firstAttribute="height" constant="200" id="frY-cm-cTQ"/>
+                                            <constraint firstItem="gsL-7m-2Fq" firstAttribute="leading" secondItem="JTa-QH-Ctr" secondAttribute="leading" constant="10" id="uLW-Lh-zRq"/>
+                                            <constraint firstAttribute="trailing" secondItem="gsL-7m-2Fq" secondAttribute="trailing" constant="10" id="zB1-fa-akt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fmT-8s-l9B" secondAttribute="bottom" constant="50" id="1Zq-Q6-Xc4"/>
+                            <constraint firstItem="fmT-8s-l9B" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Swz-9M-nhP"/>
+                            <constraint firstItem="fmT-8s-l9B" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZNt-T0-lh2"/>
+                            <constraint firstItem="VSD-qv-aDw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="dIL-ve-vIK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fmT-8s-l9B" secondAttribute="trailing" id="gLp-8A-1Kt"/>
+                            <constraint firstItem="VSD-qv-aDw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nji-Di-HUP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yG3-hB-V18"/>
+                    <connections>
+                        <outlet property="tableView" destination="fmT-8s-l9B" id="poO-Gm-96l"/>
+                        <outlet property="tapOnRowView" destination="JTa-QH-Ctr" id="ehT-p9-e2g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

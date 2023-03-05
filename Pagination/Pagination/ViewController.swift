@@ -10,11 +10,18 @@ import UIKit
 class ViewController: UIViewController {
     private var data = [String]()
     
-    private var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
-        return tableView
-    }()
+    @IBOutlet weak var tapOnRowView: UIView! {
+        didSet {
+            tapOnRowView.layer.cornerRadius = tapOnRowView.frame.size.height/2
+        }
+    }
+    
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
+            
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +62,6 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        tableView.frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.size.width, height: view.frame.size.height - 50)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -91,6 +96,10 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.tableView.isHidden = false
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
