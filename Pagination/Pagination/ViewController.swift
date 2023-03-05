@@ -18,7 +18,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        self.title = "Pagination"
         view.addSubview(tableView)
         
         tableView.delegate = self
@@ -55,12 +56,12 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        tableView.frame = view.bounds
+        tableView.frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.size.width, height: view.frame.size.height - 50)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
-        if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
+        if position > (tableView.contentSize.height - 50 - scrollView.frame.size.height) {
             if APICaller.shared.isPaginationOn() == false {
                 tableView.tableFooterView = createSpinnerView()
                 makeRequest(isPagiantion: true)
@@ -79,7 +80,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-        cell.textLabel?.text = data[indexPath.row]
+        cell.textLabel?.text =  "\(indexPath.row + 1).) " + data[indexPath.row]
         return cell
     }
     
@@ -107,8 +108,9 @@ class APICaller {
         if isPagination {
             self.isPaginationSet = true
         }
+        let paginationRandomTime = Double.random(in: 0..<3)
         
-        DispatchQueue.global().asyncAfter(deadline: .now() + (isPagination ? 5 : 6)) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + (isPagination ? paginationRandomTime : 2)) {
             let data = [
                 "Hello welcome!",
                 "Delhi is the historical place",
@@ -118,7 +120,7 @@ class APICaller {
             let pagintionData = [
                 "Hello welcome!",
                 "Pagination concept implementation",
-                "Storm is needed"
+                "This is basic implementation of the pagination"
             ]
             
             completion(.success(isPagination ? pagintionData : data))
